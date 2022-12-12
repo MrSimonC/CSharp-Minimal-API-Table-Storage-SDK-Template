@@ -9,7 +9,7 @@ var tableName = "ProgramStatus";
 var partitionKey = "ProgramStatus";
 var tableClient = new TableClient(tableConnString, tableName);
 
-app.MapGet("/", () => Results.Json<List<StatusRecord>>(GetStatuses(tableClient, tableName)));
+app.MapGet("/", () => Results.Json(GetStatuses(tableClient, tableName)));
 app.MapPost("/", (StatusRecord record) => AddEntityToTable(tableClient, record, partitionKey));
 
 app.Run();
@@ -22,7 +22,7 @@ static void AddEntityToTable(TableClient tableClient, StatusRecord record, strin
         { "Date", record.Date },
         { "Message", record.Message }
     };
-    tableClient.AddEntity(entity);
+    _ = tableClient.AddEntity(entity);
 }
 
 static List<StatusRecord> GetStatuses(TableClient tableClient, string partitionKey)
