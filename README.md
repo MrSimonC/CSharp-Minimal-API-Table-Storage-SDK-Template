@@ -17,3 +17,9 @@ In `appsettings.json`, update `TableStorageConnectionString` to either the conne
 See the differences between the two types of account [here](https://learn.microsoft.com/en-us/azure/cosmos-db/table/support?toc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fstorage%2Ftables%2Ftoc.json&bc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fbread%2Ftoc.json). 
 
 This template code has been successfully tested with both *Azure Table Storage* account and *Azure Cosmos for Table*.
+
+## Optional API_KEY authentication
+
+* Uncomment app.AddApiKeyMiddleware() to require an `X-API-KEY` passed on each endpoint
+* The calling entity must pass an "X-API-KEY" header
+* This header must match the contents of environment variable "API_KEY"
